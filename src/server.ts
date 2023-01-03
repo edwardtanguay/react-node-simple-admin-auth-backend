@@ -14,7 +14,6 @@ import cookieParser from 'cookie-parser';
 declare module 'express-session' {
 	export interface SessionData {
 		user: { [key: string]: any };
-		isLoggedIn: { [key: string]: any };
 	}
 }
 
@@ -31,7 +30,7 @@ app.use(cookieParser());
 app.use(express.json());
 const port = 3611;
 
-app.set('trust proxy', 1)
+// app.set('trust proxy', 1)
 
 app.use(
 	session({
@@ -61,26 +60,23 @@ app.post('/login', (req: express.Request, res: express.Response) => {
 	const password = req.body.password;
 	if (password === process.env.ADMIN_PASSWORD) {
 		req.session.user = 'admin' as any;
-		req.session.isLoggedIn = true as any;
 		req.session.cookie.expires = new Date(Date.now() + 10000); // 10 seconds
 		req.session.save();
 		res.send('ok');
-		console.log('user set')
 	} else {
 		res.status(401).send();
 	}
 });
 
 app.post('/currentuser', (req: express.Request, res: express.Response) => {
-	console.log(req.session)
+	const { username } = req.body;
 	if (req.session.user) {
-		console.log('user set')
 		res.send(req.session.user);
 	} else {
-		console.log('user not set')
 		res.status(403).send({});
 	}
 });
+
 
 app.listen(port, () => {
 	console.log(`listening on port http://localhost:${port}`);
