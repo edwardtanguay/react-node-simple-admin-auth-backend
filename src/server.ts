@@ -1,6 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import * as model from './model.js';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const app = express();
 app.use(cors());
@@ -13,8 +16,11 @@ app.get('/', (req: express.Request, res: express.Response) => {
 
 app.post('/login', (req: express.Request, res: express.Response) => {
 	const password = req.body.password;
-	console.log(password)
-	res.json('ok');
+	if (password === process.env.ADMIN_PASSWORD) {
+		res.send('ok');
+	} else {
+		res.status(401).send();
+	}
 });
 
 app.listen(port, () => {
