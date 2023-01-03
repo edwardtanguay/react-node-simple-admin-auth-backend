@@ -4,14 +4,17 @@ import * as model from './model.js';
 
 const app = express();
 app.use(cors());
+app.use(express.json());
 const port = 3611;
 
 app.get('/', (req: express.Request, res: express.Response) => {
 	res.send(model.getApiInstructions());
 });
 
-app.get('/test', (req: express.Request, res: express.Response) => {
-	res.json(model.getTest());
+app.post('/login', (req: express.Request, res: express.Response) => {
+	const password = req.body.password;
+	console.log(password)
+	res.json('ok');
 });
 
 app.listen(port, () => {
