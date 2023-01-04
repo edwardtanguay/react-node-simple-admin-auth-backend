@@ -70,7 +70,8 @@ app.get('/welcomemessage', (req: express.Request, res: express.Response) => {
 
 app.post('/welcomemessage', authorizeUser, (req: express.Request, res: express.Response) => {
 	const { welcomeMessage } = req.body;
-	res.send(model.saveWelcomeMessage(welcomeMessage));
+	model.saveWelcomeMessage(welcomeMessage);
+	res.send({});
 })
 
 app.post('/login', (req: express.Request, res: express.Response) => {
