@@ -64,7 +64,7 @@ app.post('/login', (req: express.Request, res: express.Response) => {
 		req.session.save();
 		res.send('ok');
 	} else {
-		res.status(401).send();
+		res.status(401).send({});
 	}
 });
 
