@@ -5,12 +5,6 @@ import * as model from './model.js';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 
-// declare module 'express-session' {
-// 	export interface SessionData {
-// 		user: any;
-// 	}
-// }
-
 declare module 'express-session' {
 	export interface SessionData {
 		user: { [key: string]: any };
@@ -20,7 +14,6 @@ declare module 'express-session' {
 dotenv.config();
 
 const app = express();
-// app.use(cors());
 app.use(cors({
 	origin: 'http://localhost:5174',
 	methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
@@ -30,27 +23,18 @@ app.use(cookieParser());
 app.use(express.json());
 const port = 3611;
 
-// app.set('trust proxy', 1)
-
 app.use(
 	session({
 		resave: true,
 		saveUninitialized: true,
-		secret: 'aksdjflskdjf', // process.env.SESSION_SECRET,
+		secret: process.env.SESSION_SECRET,
 		cookie: {
 			httpOnly: true,
-			// maxAge: 24*60*60*1000,
-			sameSite: 'lax', // lax, none
+			sameSite: 'lax', 
 			secure: false
 		}
 	})
 );
-
-app.all('/', function (req, res, next) {
-	res.header("Access-Control-Allow-Origin", "http://localhost:3611");
-	res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	next();
-});
 
 const authorizeUser = (req: express.Request, res: express.Response, next: express.NextFunction) => {
 	if (req.session.user) {
@@ -99,7 +83,6 @@ app.get('/logout', (req, res) => {
 		res.send('User logged out');
 	});
 });
-
 
 app.listen(port, () => {
 	console.log(`listening on port http://localhost:${port}`);
