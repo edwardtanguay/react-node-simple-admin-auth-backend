@@ -3,8 +3,16 @@
 ### ROOT
 GET {{url}}
 
-### WELCOME MESSAGE
+### GET WELCOME MESSAGE
 GET {{url}}/welcomemessage
+
+### SAVE WELCOME MESSAGE
+POST {{url}}/welcomemessage
+content-type: application/json
+
+{
+	"welcomeMessage": "Welcome to this site. (CHANGED)"
+}
 
 ### BASE
 POST {{url}}/login
