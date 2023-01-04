@@ -1,7 +1,7 @@
 @url = http://localhost:3611
 
 ### ROOT
-{{url}}
+GET {{url}}
 
 ### BASE
 POST {{url}}/login
@@ -11,8 +11,8 @@ content-type: application/json
 	"password": "123"
 }
 
-### BASE
-{{url}}
-
 ### GET LOGGED IN USER GET 
-POST {{url}}/currentuser
+GET {{url}}/currentuser
+
+### LOGOUT
+GET {{url}}/logout

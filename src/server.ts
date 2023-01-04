@@ -68,13 +68,18 @@ app.post('/login', (req: express.Request, res: express.Response) => {
 	}
 });
 
-app.post('/currentuser', (req: express.Request, res: express.Response) => {
-	const { username } = req.body;
+app.get('/currentuser', (req: express.Request, res: express.Response) => {
 	if (req.session.user) {
 		res.send(req.session.user);
 	} else {
 		res.status(403).send({});
 	}
+});
+
+app.get('/logout', (req, res) => {
+	req.session.destroy((err) => {
+		res.send('User logged out');
+	});
 });
 
 
