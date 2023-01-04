@@ -52,6 +52,14 @@ app.all('/', function (req, res, next) {
 	next();
 });
 
+const authorizeUser = (req: express.Request, res: express.Response, next: express.NextFunction) => {
+	if (req.session.user) {
+		next();
+	} else {
+		res.status(401).send({});
+	}
+}
+
 app.get('/', (req: express.Request, res: express.Response) => {
 	res.send(model.getApiInstructions());
 });
@@ -60,7 +68,7 @@ app.get('/welcomemessage', (req: express.Request, res: express.Response) => {
 	res.send(model.getWelcomeMessage());
 })
 
-app.post('/welcomemessage', (req: express.Request, res: express.Response) => {
+app.post('/welcomemessage', authorizeUser, (req: express.Request, res: express.Response) => {
 	const { welcomeMessage } = req.body;
 	res.send(model.saveWelcomeMessage(welcomeMessage));
 })
