@@ -4,6 +4,7 @@ import cors from 'cors';
 import * as model from './model.js';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
+import * as config from './config.js';
 
 declare module 'express-session' {
 	export interface SessionData {
@@ -15,13 +16,13 @@ dotenv.config();
 
 const app = express();
 app.use(cors({
-	origin: 'http://localhost:5174',
+	origin: ['http://localhost:3611'],
 	methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
 	credentials: true
 }));
 app.use(cookieParser());
 app.use(express.json());
-const port = 3611;
+const port = config.port;
 
 app.use(
 	session({
@@ -30,7 +31,7 @@ app.use(
 		secret: process.env.SESSION_SECRET,
 		cookie: {
 			httpOnly: true,
-			sameSite: 'lax', 
+			sameSite: 'lax',
 			secure: false
 		}
 	})

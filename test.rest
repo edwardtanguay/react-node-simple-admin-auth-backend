@@ -1,4 +1,4 @@
-@url = http://localhost:3611
+@url = http://localhost:3610
 
 ### ROOT
 GET {{url}}
@@ -14,7 +14,15 @@ content-type: application/json
 	"welcomeMessage": "Welcome to this site. (CHANGED)"
 }
 
-### BASE
+### BAD LOGIN 
+POST {{url}}/login
+content-type: application/json
+
+{
+	"password": "badpassword"
+}
+
+### SUCCESSFUL LOGIN
 POST {{url}}/login
 content-type: application/json
 
