@@ -63,7 +63,7 @@ app.post('/login', (req: express.Request, res: express.Response) => {
 	const password = req.body.password;
 	if (password === process.env.ADMIN_PASSWORD) {
 		req.session.user = 'admin' as any;
-		req.session.cookie.expires = new Date(Date.now() + 10000); // 10 seconds
+		req.session.cookie.expires = new Date(Date.now() + config.secondsTillTimeout * 1000);
 		req.session.save();
 		res.send('ok');
 	} else {
