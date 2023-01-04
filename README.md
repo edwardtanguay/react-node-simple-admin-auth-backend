@@ -6,20 +6,23 @@ This is the minimal starting point for a basic React-frontend with Node/Express-
 
 ## features
 
-- TODO...**frontend:** 
+
+- **frontend:** 
   - Vite/React 
   - Sass
   - TypeScript
   - ES6 modules
   - React Router
   - useContext
+  - admin login with password
 - **backend:** 
   - Node/Express 
   - TypeScript 
   - ES6 modules
   - simple MVC Structure (`server.ts`/`model.ts`)
+  - cookie/session authentication
 
-## TODO...install
+## install
 
 - go to your projects directory
 - create a directory called `site001`
@@ -28,7 +31,7 @@ This is the minimal starting point for a basic React-frontend with Node/Express-
 
 - go to your projects directory
 - `cd site001`
-- `git clone git@github.com:edwardtanguay/react-node-simple-api-backend.git site001-backend`
+- `git clone git@github.com:edwardtanguay/react-node-simple-admin-auth-backend.git site001-backend`
 - `npm i`
 - `npm run dev`
 
@@ -36,7 +39,7 @@ This is the minimal starting point for a basic React-frontend with Node/Express-
 
 - go to your projects directory
 - `cd site001`
-- `git clone git@github.com:edwardtanguay/react-node-simple-api-frontend.git site001-frontend`
+- `git clone git@github.com:edwardtanguay/react-node-simple-admin-auth-backend.git site001-frontend`
 - `npm i`
 - `npm run dev`
 
