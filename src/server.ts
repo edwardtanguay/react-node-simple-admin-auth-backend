@@ -56,6 +56,10 @@ app.get('/', (req: express.Request, res: express.Response) => {
 	res.send(model.getApiInstructions());
 });
 
+app.get('/welcomemessage', (req: express.Request, res: express.Response) => {
+	res.send(model.getWelcomeMessage());
+})
+
 app.post('/login', (req: express.Request, res: express.Response) => {
 	const password = req.body.password;
 	if (password === process.env.ADMIN_PASSWORD) {

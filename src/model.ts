@@ -1,8 +1,9 @@
-export const getTest = () => {
-	const datetime = new Date();
-	return {
-		message: `API test accessed at ${datetime.toISOString()}`
-	}
+import fs from 'fs';
+
+export const getWelcomeMessage = () => {
+	const welcomeMessage = fs.readFileSync('./src/data/welcomeMessage.txt',
+		{ encoding: 'utf8', flag: 'r' });
+	return welcomeMessage;
 }
 
 export const getApiInstructions = () => {

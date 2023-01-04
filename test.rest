@@ -3,6 +3,9 @@
 ### ROOT
 GET {{url}}
 
+### WELCOME MESSAGE
+GET {{url}}/welcomemessage
+
 ### BASE
 POST {{url}}/login
 content-type: application/json
